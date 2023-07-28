@@ -1,0 +1,50 @@
+#bodyDiv{
+    width: 90%;
+}
+
+/*таблички*/
+
+.notesTable {
+    /* Your styles for the entire table go here */
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.notesTable th {
+    /* Your styles for the table header cells go here */
+    background-color: #999999;
+    color: white;
+    font-weight: bold;
+    text-align: left;
+    padding: 8px;
+}
+
+.notesTable td {
+    /* Your styles for the table data cells go here */
+    background-color: #E8EAF5;
+    border-top: 10px solid white;
+    padding: 8px;
+}
+
+.notesTable tr:hover {
+    /* Your styles for the table row when hovered go here */
+    background-color: #ddd;
+}
+
+.notesTable tr:first-child th:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+   
+.notesTable tr:first-child th:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/*кнопка*/
+
+#createButton{
+    margin:10px 0px;
+    float: right;
+    border-radius: 3px;
+}
