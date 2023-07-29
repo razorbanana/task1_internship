@@ -33,11 +33,11 @@ const renderActiveNoteRow = (note) => {
         <td>${note.name}</td>
         <td>${note.created}</td>
         <td>${note.category}</td>
-        <td>${note.content.length > 13 ? note.content.slice(0, 13) + '...' : note.content.slice(0, note.content.length)}</td>
+        <td><div class="contentDiv" id=${'content' + note.id}>${note.content.length > 13 ? note.content.slice(0, 13) + '...' : note.content.slice(0, note.content.length)}</div></td>
         <td>${extractDates(note.content)}</td>
-        <td><div class="editDiv" id=${'edit' + note.id}>${icons["edit"]}</div></td>
-        <td><div class="archiveDiv" id=${'archive' + note.id}>${icons["archive"]}</div></td>
-        <td><div class="deleteDiv" id=${'delete' + note.id}>${icons["delete"]}</div></td>`
+        <td><div class="buttonDiv" id=${'edit' + note.id}>${icons["edit"]}</div></td>
+        <td><div class="buttonDiv" id=${'archive' + note.id}>${icons["archive"]}</div></td>
+        <td><div class="buttonDiv" id=${'delete' + note.id}>${icons["delete"]}</div></td>`
 
 }
 

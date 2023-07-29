@@ -38,7 +38,8 @@
                 </tr>
             </tbody>
         </table>
-        <button id="createButton">Create note</button>
+        <div id="chosenContent"></div>
+        <button id="createButton" class="commonBtn">Create note</button>
         <table id="notesStatsTable" class="notesTable">
             <tbody>
                 <tr>
@@ -50,8 +51,8 @@
             </tbody>
         </table>
     </div>
-    <div id="formDiv">
-        <form id="newNoteForm">
+    <div class="formDiv" id="createFormDiv">
+        <form class="noteForm" id="createNoteForm">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required><br><br>
 
@@ -66,11 +67,30 @@
             <label for="content">Content:</label><br>
             <textarea id="content" name="content" rows="5" cols="40" required></textarea><br><br>
 
-            <input type="submit" value="Submit" id="submitButton">
-            <input type="submit" value="Cancel" id="cancelButton">
+            <input type="submit" value="Submit" id="submitButton" class="commonBtn">
+            <input type="submit" value="Cancel" id="cancelButton" class="commonBtn">
         </form>
     </div>
+    <div class="formDiv" id="editFormDiv">
+        <form class="noteForm" id="editNoteForm">
+            <label for="name">Name:</label>
+            <input type="text" id="editedName" name="name" required><br><br>
 
+            <label for="category">Category:</label>
+            <select id="editedCategory" name="category" required>
+                <option value="Task">Task</option>
+                <option value="Random Thought">Random Thought</option>
+                <option value="Idea">Idea</option>
+                <option value="Quote">Quote</option>
+            </select><br><br>
+
+            <label for="content">Content:</label><br>
+            <textarea id="editedContent" name="content" rows="5" cols="40" required></textarea><br><br>
+
+            <input type="submit" value="Submit" id="submitEditButton" class="commonBtn">
+            <input type="submit" value="Cancel" id="cancelEditButton" class="commonBtn">
+        </form>
+    </div>
 
 </body>
 

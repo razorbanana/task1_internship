@@ -1,17 +1,18 @@
-import { addNote, archiveNote } from "./notesService.js"
+import { addNote } from "./notesService.js"
 import { formatDate, generateId } from "./functionHelper.js"
 import renderTables from "./tableRender.js"
+
 const createButtonFunctionality = () => {
     const createButton = document.querySelector('#createButton')
     createButton.addEventListener("click", (event) => {
         event.preventDefault()
-        document.querySelector('#formDiv').style.display = "flex"
+        document.querySelector('#createFormDiv').style.display = "flex"
     })
 }
 
 const submitButtonFunctionality = () => {
     const submitButton = document.querySelector('#submitButton')
-    const form = document.querySelector("#newNoteForm");
+    const form = document.querySelector("#createNoteForm");
     submitButton.addEventListener("click", (event) => {
         event.preventDefault()
         const formData = new FormData(form);
@@ -30,18 +31,18 @@ const submitButtonFunctionality = () => {
         console.log(newNote)
         addNote(newNote)
         renderTables()
-        document.querySelector('#formDiv').style.display = "none"
+        document.querySelector('#createFormDiv').style.display = "none"
     })
 }
 
 const cancelButtonFunctionality = () => {
     const cancelButton = document.querySelector('#cancelButton')
-    const form = document.querySelector("#newNoteForm");
+    const form = document.querySelector("#createFormDiv");
     cancelButton.addEventListener("click", (event) => {
         event.preventDefault()
         document.querySelector("#name").value = ""
         document.querySelector("#content").value = ""
-        document.querySelector('#formDiv').style.display = "none"
+        document.querySelector('#createFormDiv').style.display = "none"
     })
 }
 
