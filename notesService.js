@@ -1,35 +1,42 @@
 const allNotes = [{
     name: 'stas1',
-    created: '20/12/2003',
-    category: 'idea',
+    created: 'April 20, 2021',
+    category: 'Quote',
     content: 'content',
     isArchieved: false
 },
 {
     name: 'stas2',
-    created: '20/12/2003',
-    category: 'idea',
+    created: 'April 20, 2021',
+    category: 'Idea',
     content: 'content',
     isArchieved: false
 },
 {
     name: 'stas3',
-    created: '20/12/2003',
-    category: 'idea',
+    created: 'April 20, 2021',
+    category: 'Idea',
     content: 'content',
     isArchieved: true
 },
 {
     name: 'stas4',
-    created: '20/12/2003',
-    category: 'task',
+    created: 'April 20, 2021',
+    category: 'Task',
     content: 'content',
     isArchieved: false
 },
 {
     name: 'stas5',
-    created: '20/12/2003',
-    category: 'task',
+    created: 'April 20, 2021',
+    category: 'Task',
+    content: 'content',
+    isArchieved: true
+},
+{
+    name: 'stas5',
+    created: 'April 20, 2021',
+    category: 'Random Thought',
     content: 'content',
     isArchieved: true
 }]
@@ -46,4 +53,8 @@ const getAllNotes = () => {
     return allNotes
 }
 
-export {getAllNotArchievedNotes, getAllArchievedNotes, getAllNotes}
+const addNote = (data) => {
+    allNotes.push(data)
+}
+
+export {getAllNotArchievedNotes, getAllArchievedNotes, getAllNotes, addNote}
