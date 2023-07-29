@@ -1,14 +1,15 @@
 import { getAllNotArchievedNotes, getAllArchievedNotes, getAllNotes, addNote, archiveNote } from "./notesService.js"
-import {extractDates, summarizeCategories} from "./functionHelper.js"
+import { extractDates, summarizeCategories } from "./functionHelper.js"
+import { addArchiveEventListeners } from "./manageNotesButtons.js"
 
 const icons = {
     Task: `<div class="circled-icons"><span class="material-symbols-outlined ">
     shopping_cart
     </span></div>`,
-    Quote:`<div class="circled-icons"><span class="material-symbols-outlined ">
+    Quote: `<div class="circled-icons"><span class="material-symbols-outlined ">
     format_quote
     </span></div>`,
-    'Random Thought':`<div class="circled-icons"><span class="material-symbols-outlined ">
+    'Random Thought': `<div class="circled-icons"><span class="material-symbols-outlined ">
     psychology
     </span></div>`,
     Idea: `<div class="circled-icons"><span class="material-symbols-outlined">
@@ -27,16 +28,17 @@ const icons = {
 
 const renderActiveNoteRow = (note) => {
     const notArchivedNotes = document.querySelector('#notArchivedNotes>tbody')
-    notArchivedNotes.innerHTML = notArchivedNotes.innerHTML +
+    notArchivedNotes.innerHTML +=
         `<td>${icons[note.category]}</td>
         <td>${note.name}</td>
         <td>${note.created}</td>
         <td>${note.category}</td>
-        <td>${note.content.length>13?note.content.slice(0,13) + '...':note.content.slice(0,note.content.length)}</td>
+        <td>${note.content.length > 13 ? note.content.slice(0, 13) + '...' : note.content.slice(0, note.content.length)}</td>
         <td>${extractDates(note.content)}</td>
         <td>${icons["edit"]}</td>
-        <td><div class="archiveDiv" id=${'archive'+note.id}>${icons["archive"]}</div></td>
+        <td><div class="archiveDiv" id=${'archive' + note.id}>${icons["archive"]}</div></td>
         <td>${icons["delete"]}</td>`
+
 }
 
 
@@ -77,16 +79,7 @@ const renderActiveNotes = () => {
     allNotArchievedNotes.forEach(note => {
         renderActiveNoteRow(note)
     })
-    allNotArchievedNotes.forEach(note => {
-        const archiveButton = document.querySelector(`#${'archive'+note.id}`)
-        archiveButton.addEventListener("click", (event) => {
-            event.preventDefault()
-            archiveNote(note.id)
-            renderActiveNotes()
-            renderNotesStats()
-        })
-    })
-    
+    addArchiveEventListeners()
 }
 
 const renderNotesStats = () => {
@@ -104,4 +97,10 @@ const renderNotesStats = () => {
     })
 }
 
-export { renderActiveNotes, renderNotesStats, renderActiveNoteRow }
+const renderTables = () => {
+    renderActiveNotes()
+    renderNotesStats()
+}
+
+export default renderTables
+export {renderTables,  renderActiveNotes, renderNotesStats, renderActiveNoteRow }

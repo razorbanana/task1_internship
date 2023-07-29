@@ -1,8 +1,5 @@
-import { renderActiveNotes, renderNotesStats} from "./tableRender.js"
+import renderTables from "./tableRender.js"
 
-import { createButtonFunctionality, submitButtonFunctionality } from "./buttonFunctionality.js"
-renderActiveNotes()
-renderNotesStats()
-
-createButtonFunctionality()
-submitButtonFunctionality()
+import buttonsFunctionality from "./buttonFunctionality.js"
+renderTables()
+buttonsFunctionality()

@@ -1,6 +1,7 @@
-import { addNote} from "./notesService.js"
-import { formatDate, generateId} from "./functionHelper.js"
-import {renderActiveNoteRow } from "./tableRender.js"
+import { addNote, archiveNote } from "./notesService.js"
+import { formatDate, generateId } from "./functionHelper.js"
+import renderTables from "./tableRender.js"
+import {addArchiveEventListeners} from "./manageNotesButtons.js"
 const createButtonFunctionality = () => {
     const createButton = document.querySelector('#createButton')
     createButton.addEventListener("click", (event) => {
@@ -25,13 +26,30 @@ const submitButtonFunctionality = () => {
             content: formData.get("content"),
             isArchieved: false
         }
-        document.querySelector("#name").value =""
+        document.querySelector("#name").value = ""
         document.querySelector("#content").value = ""
         console.log(newNote)
         addNote(newNote)
-        renderActiveNoteRow(newNote)
+        renderTables()
         document.querySelector('#formDiv').style.display = "none"
     })
 }
 
-export { createButtonFunctionality, submitButtonFunctionality }
+const cancelButtonFunctionality = () => {
+    const cancelButton = document.querySelector('#cancelButton')
+    const form = document.querySelector("#newNoteForm");
+    cancelButton.addEventListener("click", (event) => {
+        event.preventDefault()
+        document.querySelector("#name").value = ""
+        document.querySelector("#content").value = ""
+        document.querySelector('#formDiv').style.display = "none"
+    })
+}
+
+const buttonsFunctionality = () => {
+    createButtonFunctionality()
+    submitButtonFunctionality()
+    cancelButtonFunctionality()
+}
+
+export default buttonsFunctionality
