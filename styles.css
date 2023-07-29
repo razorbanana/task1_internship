@@ -1,5 +1,12 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #bodyDiv {
-    width: 90%;
+    width: 801px;
+    font-family: 'Roboto', sans-serif;
 }
 
 /*таблички*/
@@ -7,6 +14,7 @@
 .notesTable {
     border-collapse: collapse;
     width: 100%;
+    margin-bottom: 20px;
 }
 
 .notesTable th {
@@ -21,6 +29,8 @@
 .notesTable td {
     background-color: #E8EAF5;
     border-top: 10px solid white;
+    justify-content: center;
+    text-align: center;
     padding: 8px;
 }
 
@@ -92,20 +102,12 @@
     cursor: pointer;
 }
 
-#chosenContent{
+.chosenDiv{
     margin: 20px;
     font-size: 32px;
 }
 
 /**/
-
-.buttonDiv{
-    height: 40px;
-    width: 40px;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-}
 
 .buttonDiv:hover {
     background-color: #616161;

@@ -1,30 +1,8 @@
-import { getAllNotArchievedNotes, getAllArchievedNotes, getAllNotes, addNote, archiveNote } from "./notesService.js"
+import { getAllNotArchievedNotes } from "./notesService.js"
 import { extractDates, summarizeCategories } from "./functionHelper.js"
 import addEventListeners from "./manageNotesButtons.js"
-
-const icons = {
-    Task: `<div class="circled-icons"><span class="material-symbols-outlined ">
-    shopping_cart
-    </span></div>`,
-    Quote: `<div class="circled-icons"><span class="material-symbols-outlined ">
-    format_quote
-    </span></div>`,
-    'Random Thought': `<div class="circled-icons"><span class="material-symbols-outlined ">
-    psychology
-    </span></div>`,
-    Idea: `<div class="circled-icons"><span class="material-symbols-outlined">
-    lightbulb
-    </span></div>`,
-    edit: `<span class="material-symbols-outlined">
-    edit
-    </span>`,
-    archive: `<span class="material-symbols-outlined">
-    archive
-    </span>`,
-    delete: `<span class="material-symbols-outlined">
-    delete
-    </span>`
-}
+import getIcons from "./icons.js"
+const icons = getIcons()
 
 const renderActiveNoteRow = (note) => {
     const notArchivedNotes = document.querySelector('#notArchivedNotes>tbody')
@@ -79,28 +57,27 @@ const renderActiveNotes = () => {
     allNotArchievedNotes.forEach(note => {
         renderActiveNoteRow(note)
     })
-    addEventListeners()
+    
 }
 
 const renderNotesStats = () => {
     clearStatsTable()
     const notesStatsTable = document.querySelector('#notesStatsTable>tbody')
 
-    const allNotes = getAllNotes()
-    const categoriesStats = summarizeCategories(allNotes)
-    categoriesStats.forEach(note => {
+    const categoriesStats = summarizeCategories()
+    categoriesStats.forEach(obj => {
         notesStatsTable.innerHTML = notesStatsTable.innerHTML +
-            `<td>${icons[note.category]}</td>
-         <td>${note.category}</td>
-         <td>${note.active || 0}</td>
-         <td>${note.archieved || 0}</td>`
+            `<td>${icons[obj.category]}</td>
+         <td><div class="contentDiv" id=${'category'+obj.category.slice(0,5)}>${obj.category}</div></td>
+         <td>${obj.active || 0}</td>
+         <td>${obj.archieved || 0}</td>`
     })
 }
 
 const renderTables = () => {
     renderActiveNotes()
     renderNotesStats()
+    addEventListeners()
 }
 
 export default renderTables
-export {renderTables,  renderActiveNotes, renderNotesStats, renderActiveNoteRow }

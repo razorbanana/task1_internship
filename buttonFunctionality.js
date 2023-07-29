@@ -37,7 +37,6 @@ const submitButtonFunctionality = () => {
 
 const cancelButtonFunctionality = () => {
     const cancelButton = document.querySelector('#cancelButton')
-    const form = document.querySelector("#createFormDiv");
     cancelButton.addEventListener("click", (event) => {
         event.preventDefault()
         document.querySelector("#name").value = ""

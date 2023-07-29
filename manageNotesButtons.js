@@ -1,7 +1,8 @@
-import { getAllNotArchievedNotes } from "./notesService.js"
-import { archiveNote, deleteNote } from "./notesService.js"
+import { getAllNotArchievedNotes,archiveNote, deleteNote, getArchievedNotesByCategory  } from "./notesService.js"
 import renderTables from "./tableRender.js"
 import editFormButtonFunctionality from "./editTableButtons.js"
+import { summarizeCategories } from "./functionHelper.js"
+import renderArchive from "./archiveRender.js"
 
 const addArchiveEventListeners = () => {
     const allNotArchievedNotes = getAllNotArchievedNotes()
@@ -43,10 +44,10 @@ const addEditEventListeners = () => {
     })
 }
 
-const hoverContentEventListener = () => {
+const clickContentEventListener = () => {
     const allNotArchievedNotes = getAllNotArchievedNotes()
+    const chosenDiv = document.querySelector(`#chosenContent`)
     allNotArchievedNotes.forEach(note => {
-        const chosenDiv = document.querySelector(`#chosenContent`)
         const contentDiv = document.querySelector(`#${'content' + note.id}`)
         contentDiv.addEventListener("click", (event) => {
             event.preventDefault()
@@ -55,11 +56,25 @@ const hoverContentEventListener = () => {
     })
 }
 
+const clickCategoryEventListener = () => {
+    const summarizedCategories = summarizeCategories()
+    console.log(summarizedCategories)
+    summarizedCategories.forEach(obj => {
+        const categoryDiv = document.querySelector(`#${'category' + obj.category.slice(0, 5)}`)
+        categoryDiv.addEventListener("click", (event) => {
+            event.preventDefault()
+            renderArchive(obj.category)
+        })
+
+    })
+}
+
 const addEventListeners = () => {
     addArchiveEventListeners()
     addDeleteEventListeners()
     addEditEventListeners()
-    hoverContentEventListener()
+    clickContentEventListener()
+    clickCategoryEventListener()
 }
 
 export default addEventListeners

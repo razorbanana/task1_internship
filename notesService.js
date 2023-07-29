@@ -87,4 +87,8 @@ const archiveNote = (id) => {
     })
 }
 
-export { getAllNotArchievedNotes, archiveNote, getAllArchievedNotes, getAllNotes, addNote, deleteNote, updateNote }
+const getArchievedNotesByCategory = (category) => {
+    return allNotes.filter(note => note.isArchieved===true && note.category === category)
+}
+
+export { getAllNotArchievedNotes, archiveNote, getAllArchievedNotes, getAllNotes, addNote, deleteNote, updateNote, getArchievedNotesByCategory }
