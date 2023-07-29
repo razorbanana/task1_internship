@@ -1,7 +1,6 @@
 import { addNote, archiveNote } from "./notesService.js"
 import { formatDate, generateId } from "./functionHelper.js"
 import renderTables from "./tableRender.js"
-import {addArchiveEventListeners} from "./manageNotesButtons.js"
 const createButtonFunctionality = () => {
     const createButton = document.querySelector('#createButton')
     createButton.addEventListener("click", (event) => {

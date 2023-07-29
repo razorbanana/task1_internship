@@ -1,6 +1,6 @@
 import { getAllNotArchievedNotes, getAllArchievedNotes, getAllNotes, addNote, archiveNote } from "./notesService.js"
 import { extractDates, summarizeCategories } from "./functionHelper.js"
-import { addArchiveEventListeners } from "./manageNotesButtons.js"
+import addEventListeners from "./manageNotesButtons.js"
 
 const icons = {
     Task: `<div class="circled-icons"><span class="material-symbols-outlined ">
@@ -35,9 +35,9 @@ const renderActiveNoteRow = (note) => {
         <td>${note.category}</td>
         <td>${note.content.length > 13 ? note.content.slice(0, 13) + '...' : note.content.slice(0, note.content.length)}</td>
         <td>${extractDates(note.content)}</td>
-        <td>${icons["edit"]}</td>
+        <td><div class="editDiv" id=${'edit' + note.id}>${icons["edit"]}</div></td>
         <td><div class="archiveDiv" id=${'archive' + note.id}>${icons["archive"]}</div></td>
-        <td>${icons["delete"]}</td>`
+        <td><div class="deleteDiv" id=${'delete' + note.id}>${icons["delete"]}</div></td>`
 
 }
 
@@ -79,7 +79,7 @@ const renderActiveNotes = () => {
     allNotArchievedNotes.forEach(note => {
         renderActiveNoteRow(note)
     })
-    addArchiveEventListeners()
+    addEventListeners()
 }
 
 const renderNotesStats = () => {
