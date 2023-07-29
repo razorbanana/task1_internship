@@ -2,18 +2,18 @@ import { getAllNotArchievedNotes, getAllArchievedNotes, getAllNotes, addNote } f
 import {extractDates} from "./functionHelper.js"
 
 const icons = {
-    Task: `<span class="material-symbols-outlined">
+    Task: `<div class="circled-icons"><span class="material-symbols-outlined ">
     shopping_cart
-    </span>`,
-    Quote:`<span class="material-symbols-outlined">
+    </span></div>`,
+    Quote:`<div class="circled-icons"><span class="material-symbols-outlined ">
     format_quote
-    </span>`,
-    'Random Thought':`<span class="material-symbols-outlined">
+    </span></div>`,
+    'Random Thought':`<div class="circled-icons"><span class="material-symbols-outlined ">
     psychology
-    </span>`,
-    Idea: `<span class="material-symbols-outlined">
+    </span></div>`,
+    Idea: `<div class="circled-icons"><span class="material-symbols-outlined">
     lightbulb
-    </span>`,
+    </span></div>`,
     edit: `<span class="material-symbols-outlined">
     edit
     </span>`,
@@ -32,7 +32,7 @@ const renderActiveNoteRow = (note) => {
         <td>${note.name}</td>
         <td>${note.created}</td>
         <td>${note.category}</td>
-        <td>${note.content}</td>
+        <td>${note.content.length>13?note.content.slice(0,13) + '...':note.content.slice(0,note.content.length)}</td>
         <td>${extractDates(note.content)}</td>
         <td>${icons["edit"]}</td>
         <td>${icons["archive"]}</td>

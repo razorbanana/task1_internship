@@ -2,14 +2,14 @@ const allNotes = [{
     name: 'stas1',
     created: 'April 20, 2021',
     category: 'Quote',
-    content: 'content',
+    content: 'I’m gonna have a dentist appointment on the 3/5/2021, I moved it from 5/5/2021',
     isArchieved: false
 },
 {
     name: 'stas2',
     created: 'April 20, 2021',
     category: 'Idea',
-    content: 'content',
+    content: 'April 20, 2021 and April 21, 2021',
     isArchieved: false
 },
 {

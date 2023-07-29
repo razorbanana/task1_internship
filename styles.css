@@ -71,3 +71,15 @@
     padding: 20px;
     border-radius: 10px;
 }
+
+.circled-icons {
+    background-color: #616161;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: white;
+}
+
