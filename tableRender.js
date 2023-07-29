@@ -1,5 +1,5 @@
-import { getAllNotArchievedNotes, getAllArchievedNotes, getAllNotes, addNote } from "./notesService.js"
-import {extractDates} from "./functionHelper.js"
+import { getAllNotArchievedNotes, getAllArchievedNotes, getAllNotes, addNote, archiveNote } from "./notesService.js"
+import {extractDates, summarizeCategories} from "./functionHelper.js"
 
 const icons = {
     Task: `<div class="circled-icons"><span class="material-symbols-outlined ">
@@ -35,74 +35,68 @@ const renderActiveNoteRow = (note) => {
         <td>${note.content.length>13?note.content.slice(0,13) + '...':note.content.slice(0,note.content.length)}</td>
         <td>${extractDates(note.content)}</td>
         <td>${icons["edit"]}</td>
-        <td>${icons["archive"]}</td>
+        <td><div class="archiveDiv" id=${'archive'+note.id}>${icons["archive"]}</div></td>
         <td>${icons["delete"]}</td>`
 }
 
+
+const clearActiveTable = () => {
+    const notArchivedNotes = document.querySelector('#notArchivedNotes>tbody')
+    notArchivedNotes.innerHTML = `<tr>
+    <th></th>
+    <th>Name</th>
+    <th>Created</th>
+    <th>Category</th>
+    <th>Content</th>
+    <th>Dates</th>
+    <th><span class="material-symbols-outlined">
+            edit
+        </span></th>
+    <th><span class="material-symbols-outlined">
+        archive
+        </span></th>
+    <th><span class="material-symbols-outlined">
+        delete
+        </span></th>
+</tr>`
+}
+
+const clearStatsTable = () => {
+    const notArchivedNotes = document.querySelector('#notesStatsTable>tbody')
+    notArchivedNotes.innerHTML = `<tr>
+    <th></th>
+    <th>Note Category</th>
+    <th>Active</th>
+    <th>Archived</th>
+</tr>`
+}
+
 const renderActiveNotes = () => {
+    clearActiveTable()
     const allNotArchievedNotes = getAllNotArchievedNotes()
     allNotArchievedNotes.forEach(note => {
         renderActiveNoteRow(note)
     })
+    allNotArchievedNotes.forEach(note => {
+        const archiveButton = document.querySelector(`#${'archive'+note.id}`)
+        archiveButton.addEventListener("click", (event) => {
+            event.preventDefault()
+            archiveNote(note.id)
+            renderActiveNotes()
+            renderNotesStats()
+        })
+    })
+    
 }
 
 const renderNotesStats = () => {
-    const archivedNotes = document.querySelector('#archivedNotes>tbody')
+    clearStatsTable()
+    const notesStatsTable = document.querySelector('#notesStatsTable>tbody')
 
-    const allArchievedNotes = getAllNotes()
-    const archievedCategories = allArchievedNotes.reduce((accumulator, currentValue) => {
-        if (accumulator.find(obj => obj.category === currentValue.category)) {
-            if (currentValue.isArchieved) {
-                accumulator = accumulator.map(obj => {
-                    if (obj.category === currentValue.category) {
-                        if (obj.hasOwnProperty("archieved")) {
-                            return {
-                                ...obj, archieved: obj.archieved + 1
-                            }
-                        } else {
-                            return {
-                                ...obj, archieved: 1
-                            }
-                        }
-                    } else {
-                        return obj
-                    }
-                })
-            } else {
-                accumulator = accumulator.map(obj => {
-                    if (obj.category === currentValue.category) {
-                        if (obj.hasOwnProperty("active")) {
-                            return {
-                                ...obj, active: obj.active + 1
-                            }
-                        } else {
-                            return {
-                                ...obj, active: 1
-                            }
-                        }
-                    } else {
-                        return obj
-                    }
-                })
-            }
-        } else {
-            if (currentValue.isArchieved) {
-                accumulator.push({
-                    category: currentValue.category,
-                    archieved: 1
-                })
-            } else {
-                accumulator.push({
-                    category: currentValue.category,
-                    active: 1
-                })
-            }
-        }
-        return accumulator
-    }, [])
-    console.log(archievedCategories)
-    archievedCategories.forEach(note => {
-        archivedNotes.innerHTML = archivedNotes.innerHTML +
+    const allNotes = getAllNotes()
+    const categoriesStats = summarizeCategories(allNotes)
+    categoriesStats.forEach(note => {
+        notesStatsTable.innerHTML = notesStatsTable.innerHTML +
             `<td>${icons[note.category]}</td>
          <td>${note.category}</td>
          <td>${note.active || 0}</td>

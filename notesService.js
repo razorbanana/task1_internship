@@ -1,4 +1,5 @@
-const allNotes = [{
+let allNotes = [{
+    id: 1,
     name: 'stas1',
     created: 'April 20, 2021',
     category: 'Quote',
@@ -6,6 +7,7 @@ const allNotes = [{
     isArchieved: false
 },
 {
+    id: 2,
     name: 'stas2',
     created: 'April 20, 2021',
     category: 'Idea',
@@ -13,6 +15,7 @@ const allNotes = [{
     isArchieved: false
 },
 {
+    id: 3,
     name: 'stas3',
     created: 'April 20, 2021',
     category: 'Idea',
@@ -20,6 +23,7 @@ const allNotes = [{
     isArchieved: true
 },
 {
+    id: 4,
     name: 'stas4',
     created: 'April 20, 2021',
     category: 'Task',
@@ -27,6 +31,7 @@ const allNotes = [{
     isArchieved: false
 },
 {
+    id: 5,
     name: 'stas5',
     created: 'April 20, 2021',
     category: 'Task',
@@ -34,11 +39,12 @@ const allNotes = [{
     isArchieved: true
 },
 {
-    name: 'stas5',
+    id: 6,
+    name: 'stas6',
     created: 'April 20, 2021',
     category: 'Random Thought',
     content: 'content',
-    isArchieved: true
+    isArchieved: false
 }]
 
 const getAllNotArchievedNotes = () => {
@@ -57,4 +63,28 @@ const addNote = (data) => {
     allNotes.push(data)
 }
 
-export {getAllNotArchievedNotes, getAllArchievedNotes, getAllNotes, addNote}
+const deleteNote = (id) => {
+    allNotes = allNotes.filter(note => note.id !== id)
+}
+
+const updateNote = (id, data) => {
+    allNotes = allNotes.map(note => {
+        if (note.id === id) {
+            return data
+        } else {
+            return note
+        }
+    })
+}
+
+const archiveNote = (id) => {
+    allNotes = allNotes.map(note => {
+        if (note.id === id) {
+            return { ...note, isArchieved: !note.isArchieved }
+        } else {
+            return note
+        }
+    })
+}
+
+export { getAllNotArchievedNotes, archiveNote, getAllArchievedNotes, getAllNotes, addNote, deleteNote, updateNote }

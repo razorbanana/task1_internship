@@ -1,5 +1,5 @@
 import { addNote} from "./notesService.js"
-import { formatDate } from "./functionHelper.js"
+import { formatDate, generateId} from "./functionHelper.js"
 import {renderActiveNoteRow } from "./tableRender.js"
 const createButtonFunctionality = () => {
     const createButton = document.querySelector('#createButton')
@@ -18,6 +18,7 @@ const submitButtonFunctionality = () => {
         console.log(formData)
 
         const newNote = {
+            id: generateId(),
             name: formData.get("name"),
             created: formatDate(new Date()),
             category: formData.get("category"),
