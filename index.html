@@ -1,11 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script type="module" src="script.js" defer></script>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+    <title>Notes app</title>
 </head>
+
 <body>
+    <div id="bodyDiv">
+        <!-- таблиця з активними нотатками -->
+        <table id="notArchivedNotes" class="notesTable">
+            
+        </table>
+        <!-- вивід вибраного контенту -->
+        <div id="chosenContent"  class="chosenDiv"></div>
+        <!-- кнопка для створення нотатки -->
+        <button id="createButton" class="commonBtn">Create note</button>
+        <!-- таблиця з статистикою -->
+        <table id="notesStatsTable" class="notesTable">
+            <tbody>
+                <tr>
+                    <th></th>
+                    <th>Note Category</th>
+                    <th>Active</th>
+                    <th>Archived</th>
+                </tr>
+            </tbody>
+        </table>
+        <!-- таблиця з архівними нотатками -->
+        <div id="archiveDiv">
+            
+        </div>
+        <!-- вивід вибраного в архіві контенту -->
+        <div id="archivedContentDiv" class="chosenDiv">Click category to show archived notes</div>
+    </div>
+
+
+    <!-- форма для створення нотатки -->
+    <div class="formDiv" id="createFormDiv">
+        <form class="noteForm" id="createNoteForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="category">Category:</label>
+            <select id="category" name="category" required>
+                <option value="Task">Task</option>
+                <option value="Random Thought">Random Thought</option>
+                <option value="Idea">Idea</option>
+                <option value="Quote">Quote</option>
+            </select><br><br>
+
+            <label for="content">Content:</label><br>
+            <textarea id="content" name="content" rows="5" cols="40" required></textarea><br><br>
+
+            <input type="submit" value="Submit" id="submitButton" class="commonBtn">
+            <input type="submit" value="Cancel" id="cancelButton" class="commonBtn">
+        </form>
+    </div>
+    <!-- форма для редагування нотатки -->
+    <div class="formDiv" id="editFormDiv">
+        <form class="noteForm" id="editNoteForm">
+            <label for="name">Name:</label>
+            <input type="text" id="editedName" name="name" required><br><br>
+
+            <label for="category">Category:</label>
+            <select id="editedCategory" name="category" required>
+                <option value="Task">Task</option>
+                <option value="Random Thought">Random Thought</option>
+                <option value="Idea">Idea</option>
+                <option value="Quote">Quote</option>
+            </select><br><br>
+
+            <label for="content">Content:</label><br>
+            <textarea id="editedContent" name="content" rows="5" cols="40" required></textarea><br><br>
+
+            <input type="submit" value="Submit" id="submitEditButton" class="commonBtn">
+            <input type="submit" value="Cancel" id="cancelEditButton" class="commonBtn">
+        </form>
+    </div>
+
     
 </body>
+
 </html>
