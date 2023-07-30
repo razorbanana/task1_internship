@@ -1,6 +1,6 @@
-import { addNote } from "./notesService.js"
-import { formatDate, generateId } from "./functionHelper.js"
-import renderTables from "./tableRender.js"
+import { addNote } from "../service/notesService.js"
+import { formatDate, generateId } from "../helper/functionHelper.js"
+import renderTables from "../render/tableRender.js"
 
 const createButtonFunctionality = () => {
     const createButton = document.querySelector('#createButton')

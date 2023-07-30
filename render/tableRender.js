@@ -1,7 +1,7 @@
-import { getAllNotArchievedNotes } from "./notesService.js"
-import { extractDates, summarizeCategories } from "./functionHelper.js"
-import addEventListeners from "./manageNotesButtons.js"
-import getIcons from "./icons.js"
+import { getAllNotArchievedNotes } from "../service/notesService.js"
+import { extractDates, summarizeCategories } from "../helper/functionHelper.js"
+import addEventListeners from "../buttons/manageNotesButtons.js"
+import getIcons from "../helper/icons.js"
 const icons = getIcons()
 
 const renderActiveNoteRow = (note) => {

@@ -1,7 +1,7 @@
-import { extractDates } from "./functionHelper.js"
-import { archiveNote, getArchievedNotesByCategory } from "./notesService.js"
+import { extractDates } from "../helper/functionHelper.js"
+import { archiveNote, getArchievedNotesByCategory } from "../service/notesService.js"
 import renderTables from "./tableRender.js"
-import getIcons from "./icons.js"
+import getIcons from "../helper/icons.js"
 const icons = getIcons()
 
 const renderArchiveNoteRow = (note) => {

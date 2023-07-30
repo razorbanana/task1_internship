@@ -1,4 +1,4 @@
-import { getAllNotes } from "./notesService.js";
+import { getAllNotes } from "../service/notesService.js";
 
 function formatDate(date) {
     const months = [

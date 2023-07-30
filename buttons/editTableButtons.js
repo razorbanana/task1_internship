@@ -1,6 +1,6 @@
-import { updateNote } from "./notesService.js";
-import { formatDate } from "./functionHelper.js";
-import renderTables from "./tableRender.js";
+import { updateNote } from "../service/notesService.js";
+import { formatDate } from "../helper/functionHelper.js";
+import renderTables from "../render/tableRender.js";
 
 const submitEditFormButtonFunctionality = (id) => {
     const editButton = document.querySelector('#submitEditButton')

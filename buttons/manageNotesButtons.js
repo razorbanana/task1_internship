@@ -1,8 +1,8 @@
-import { getAllNotArchievedNotes,archiveNote, deleteNote, getArchievedNotesByCategory  } from "./notesService.js"
-import renderTables from "./tableRender.js"
-import editFormButtonFunctionality from "./editTableButtons.js"
-import { summarizeCategories } from "./functionHelper.js"
-import renderArchive from "./archiveRender.js"
+import { getAllNotArchievedNotes,archiveNote, deleteNote, getArchievedNotesByCategory  } from "../service/notesService.js"
+import renderTables from "../render/tableRender.js"
+import editFormButtonFunctionality from "../buttons/editTableButtons.js"
+import { summarizeCategories } from "../helper/functionHelper.js"
+import renderArchive from "../render/archiveRender.js"
 
 const addArchiveEventListeners = () => {
     const allNotArchievedNotes = getAllNotArchievedNotes()
@@ -58,7 +58,6 @@ const clickContentEventListener = () => {
 
 const clickCategoryEventListener = () => {
     const summarizedCategories = summarizeCategories()
-    console.log(summarizedCategories)
     summarizedCategories.forEach(obj => {
         const categoryDiv = document.querySelector(`#${'category' + obj.category.slice(0, 5)}`)
         categoryDiv.addEventListener("click", (event) => {
