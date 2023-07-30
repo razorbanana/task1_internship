@@ -2,6 +2,7 @@ import { updateNote } from "../service/notesService.js";
 import { formatDate } from "../helper/functionHelper.js";
 import renderTables from "../render/tableRender.js";
 
+//підтвердження в формі редагування
 const submitEditFormButtonFunctionality = (id) => {
     const editButton = document.querySelector('#submitEditButton')
     const form = document.querySelector("#editNoteForm");
@@ -26,6 +27,7 @@ const submitEditFormButtonFunctionality = (id) => {
     })
 }
 
+//закриття форми редагування
 const cancelEditFormButtonFunctionality = (id) => {
     const cancelButton = document.querySelector('#cancelEditButton')
     const form = document.querySelector("#editNoteForm");
@@ -37,6 +39,7 @@ const cancelEditFormButtonFunctionality = (id) => {
     })
 }
 
+//вся функціональність форми редагування
 const editFormButtonFunctionality = (id) => {
     cancelEditFormButtonFunctionality(id)
     submitEditFormButtonFunctionality(id)

@@ -4,6 +4,7 @@ import addEventListeners from "../buttons/manageNotesButtons.js"
 import getIcons from "../helper/icons.js"
 const icons = getIcons()
 
+//рендер одного рядка таблиці з активними нотатками
 const renderActiveNoteRow = (note) => {
     const notArchivedNotes = document.querySelector('#notArchivedNotes>tbody')
     notArchivedNotes.innerHTML +=
@@ -19,14 +20,16 @@ const renderActiveNoteRow = (note) => {
 
 }
 
-
+//очищення таблиці з активними нотатками
 const clearActiveTable = (allNotArchievedNotes) => {
     const notArchivedNotes = document.querySelector('#notArchivedNotes')
     const chosenDiv = document.querySelector(`#chosenContent`)
+    //якщо немає активних нотаток, то таблиці немає, вивід відповідного повідомлення 
     if (allNotArchievedNotes.length === 0) {
         notArchivedNotes.innerHTML = ""
         chosenDiv.innerHTML="There are no active notes"
     } else {
+        //якщо є активні нотатки, то підказка для перегляду вмісту
         chosenDiv.innerHTML="Click content cell to read it!"
         notArchivedNotes.innerHTML = `<tbody>
     <tr>
@@ -51,6 +54,7 @@ const clearActiveTable = (allNotArchievedNotes) => {
 
 }
 
+//очищення таблиці з статистикою
 const clearStatsTable = () => {
     const notArchivedNotes = document.querySelector('#notesStatsTable>tbody')
     notArchivedNotes.innerHTML = `<tr>
@@ -61,6 +65,7 @@ const clearStatsTable = () => {
 </tr>`
 }
 
+//рендер активних нотаток
 const renderActiveNotes = () => {
     const allNotArchievedNotes = getAllNotArchievedNotes()
     clearActiveTable(allNotArchievedNotes)
@@ -70,6 +75,7 @@ const renderActiveNotes = () => {
 
 }
 
+//рендер статистики
 const renderNotesStats = () => {
     clearStatsTable()
     const notesStatsTable = document.querySelector('#notesStatsTable>tbody')
@@ -84,6 +90,7 @@ const renderNotesStats = () => {
     })
 }
 
+//рендер таблиць з активними нотатками та статистикою, додавання функціоналу
 const renderTables = () => {
     renderActiveNotes()
     renderNotesStats()

@@ -2,6 +2,7 @@ import { addNote } from "../service/notesService.js"
 import { formatDate, generateId } from "../helper/functionHelper.js"
 import renderTables from "../render/tableRender.js"
 
+//клікання кнопки для форми створення нотатки
 const createButtonFunctionality = () => {
     const createButton = document.querySelector('#createButton')
     createButton.addEventListener("click", (event) => {
@@ -10,6 +11,7 @@ const createButtonFunctionality = () => {
     })
 }
 
+//кнопка підтвердження створення нотатки
 const submitButtonFunctionality = () => {
     const submitButton = document.querySelector('#submitButton')
     const form = document.querySelector("#createNoteForm");
@@ -35,6 +37,7 @@ const submitButtonFunctionality = () => {
     })
 }
 
+//закриття форми створення нотатки
 const cancelButtonFunctionality = () => {
     const cancelButton = document.querySelector('#cancelButton')
     cancelButton.addEventListener("click", (event) => {
@@ -45,6 +48,7 @@ const cancelButtonFunctionality = () => {
     })
 }
 
+//вся функціональність створення нотатки
 const buttonsFunctionality = () => {
     createButtonFunctionality()
     submitButtonFunctionality()

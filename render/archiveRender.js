@@ -4,6 +4,7 @@ import renderTables from "./tableRender.js"
 import getIcons from "../helper/icons.js"
 const icons = getIcons()
 
+//рендер одного рядка таблиці з архівними нотатками
 const renderArchiveNoteRow = (note) => {
     const archivedNotes = document.querySelector('#archivedNotes>tbody')
     archivedNotes.innerHTML +=
@@ -16,13 +17,16 @@ const renderArchiveNoteRow = (note) => {
         <td><div class="buttonDiv" id=${'unarchive' + note.id}>${icons["unarchive"]}</div></td>`
 }
 
+//очищення таблиці з архівними нотатками
 const clearArchiveTable = (notes) => {
     const archiveDiv = document.querySelector('#archiveDiv')
     const chosenDiv = document.querySelector(`#archivedContentDiv`)
+    //якщо не вибрана категорія, то таблиці немає, вивід відповідного повідомлення
     if(notes.length === 0){
         archiveDiv.innerHTML = ''
         chosenDiv.innerHTML = 'Click category to show archived notes'
     }else{
+        //якщо є архівні нотатки, то підказка для перегляду вмісту
         chosenDiv.innerHTML = 'Click content cell of archive note to read it!'
         archiveDiv.innerHTML = `
 <table id="archivedNotes" class="notesTable">
@@ -45,6 +49,7 @@ const clearArchiveTable = (notes) => {
     
 }
 
+//функіонал для кнопки розархівації
 const addUnarchiveEventListeners = (notes) => {
     notes.forEach(note => {
         const contentDiv = document.querySelector(`#${'unarchive' + note.id}`)
@@ -58,6 +63,7 @@ const addUnarchiveEventListeners = (notes) => {
     })
 }
 
+//он клік для контенту для його виведення
 const clickArchiveContentEventListener = (notes) => {
     const chosenDiv = document.querySelector(`#archivedContentDiv`)
     notes.forEach(note => {
@@ -69,6 +75,7 @@ const clickArchiveContentEventListener = (notes) => {
     })
 }
 
+//рендер архівних нотаток
 const renderArchiveNotes = (notes) => {
     clearArchiveTable(notes)
     notes.forEach(note => {
@@ -76,12 +83,14 @@ const renderArchiveNotes = (notes) => {
     })
 }
 
+//рендер нотаток і додавання функціоналу
 const renderAllByNotes = (notes) => {
     renderArchiveNotes(notes)
     addUnarchiveEventListeners(notes)
     clickArchiveContentEventListener(notes)
 }
 
+//рендер за категорією
 const renderArchive = (category) => {
     const chosenDiv = document.querySelector(`#archivedContentDiv`)
     chosenDiv.innerHTML = ""

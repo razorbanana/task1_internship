@@ -1,5 +1,6 @@
 import { getAllNotes } from "../service/notesService.js";
 
+//функція для форматування дати в вигляд з прикладу
 function formatDate(date) {
     const months = [
         "January", "February", "March", "April", "May", "June",
@@ -13,6 +14,7 @@ function formatDate(date) {
     return `${month} ${day}, ${year}`;
 }
 
+//витягнення дат з тексту
 const extractDates = (inputString) => {
 
     const datePatterns = [/\b\d{1,2}[\/-]\d{1,2}[\/-]\d{2,4}\b/g, /\b\d{2,4}[\/-]\d{1,2}[\/-]\d{1,2}\b/g,
@@ -31,12 +33,13 @@ const extractDates = (inputString) => {
     return allDates.join(', ')
 }
 
+//генерація ідентифікатора
 const generateId = () => {
     const allNotes = getAllNotes()
     return 1 + allNotes.reduce((acc, currentValue) => currentValue.id > acc ? currentValue.id : acc, 1)
 }
 
-
+//отримати об'єкт для побудови статистики
 const summarizeCategories = () => {
     const allNotes = getAllNotes()
     return allNotes.reduce((accumulator, currentValue) => {

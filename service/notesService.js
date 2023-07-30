@@ -1,6 +1,7 @@
+//нотатки зберігаються в масиві
 let allNotes = [{
     id: 1,
-    name: 'stas1',
+    name: 'note1',
     created: 'April 20, 2021',
     category: 'Quote',
     content: 'I’m gonna have a dentist appointment on the 3/5/2021, I moved it from 5/5/2021',
@@ -8,7 +9,7 @@ let allNotes = [{
 },
 {
     id: 2,
-    name: 'stas2',
+    name: 'note2',
     created: 'April 20, 2021',
     category: 'Idea',
     content: 'April 20, 2021 and April 21, 2021',
@@ -16,79 +17,123 @@ let allNotes = [{
 },
 {
     id: 3,
-    name: 'stas3',
+    name: 'note3',
     created: 'April 20, 2021',
     category: 'Idea',
-    content: 'content',
+    content: 'content3',
     isArchieved: true
 },
 {
     id: 4,
-    name: 'stas4',
+    name: 'note4',
     created: 'April 20, 2021',
     category: 'Task',
-    content: 'content',
+    content: 'content4',
     isArchieved: false
 },
 {
     id: 5,
-    name: 'stas5',
+    name: 'note5',
     created: 'April 20, 2021',
     category: 'Task',
-    content: 'content',
+    content: 'content5',
     isArchieved: true
 },
 {
     id: 6,
-    name: 'stas6',
+    name: 'note6',
     created: 'April 20, 2021',
     category: 'Random Thought',
-    content: 'content',
+    content: 'content6',
     isArchieved: false
 }]
 
+//витягнути активні нотатки
 const getAllNotArchievedNotes = () => {
-    return allNotes.filter(note => note.isArchieved === false)
-}
+    try {
+        return allNotes.filter(note => note.isArchieved === false);
+    } catch (error) {
+        console.error("Error in getAllNotArchievedNotes:", error);
+        return [];
+    }
+};
 
+//витягнути архівовані нотатки
 const getAllArchievedNotes = () => {
-    return allNotes.filter(note => note.isArchieved === true)
-}
+    try {
+        return allNotes.filter(note => note.isArchieved === true);
+    } catch (error) {
+        console.error("Error in getAllArchievedNotes:", error);
+        return [];
+    }
+};
 
+//витягнути всі нотатки
 const getAllNotes = () => {
-    return allNotes
-}
+    try {
+        return allNotes;
+    } catch (error) {
+        console.error("Error in getAllNotes:", error);
+        return [];
+    }
+};
 
+//додати нотатку
 const addNote = (data) => {
-    allNotes.push(data)
-}
+    try {
+        allNotes.push(data);
+    } catch (error) {
+        console.error("Error in addNote:", error);
+    }
+};
 
+//видалити нотатку
 const deleteNote = (id) => {
-    allNotes = allNotes.filter(note => note.id !== id)
-}
+    try {
+        allNotes = allNotes.filter(note => note.id !== id);
+    } catch (error) {
+        console.error("Error in deleteNote:", error);
+    }
+};
 
+//обновити дані нотатки
 const updateNote = (id, data) => {
-    allNotes = allNotes.map(note => {
-        if (note.id === id) {
-            return data
-        } else {
-            return note
-        }
-    })
-}
+    try {
+        allNotes = allNotes.map(note => {
+            if (note.id === id) {
+                return data;
+            } else {
+                return note;
+            }
+        });
+    } catch (error) {
+        console.error("Error in updateNote:", error);
+    }
+};
 
+//зміни стан архівації нотатки
 const archiveNote = (id) => {
-    allNotes = allNotes.map(note => {
-        if (note.id === id) {
-            return { ...note, isArchieved: !note.isArchieved }
-        } else {
-            return note
-        }
-    })
-}
+    try {
+        allNotes = allNotes.map(note => {
+            if (note.id === id) {
+                return { ...note, isArchieved: !note.isArchieved };
+            } else {
+                return note;
+            }
+        });
+    } catch (error) {
+        console.error("Error in archiveNote:", error);
+    }
+};
 
+//витягнути архівовані нотатки за категорією
 const getArchievedNotesByCategory = (category) => {
-    return allNotes.filter(note => note.isArchieved===true && note.category === category)
-}
+    try {
+        return allNotes.filter(note => note.isArchieved === true && note.category === category);
+    } catch (error) {
+        console.error("Error in getArchievedNotesByCategory:", error);
+        return [];
+    }
+};
 
 export { getAllNotArchievedNotes, archiveNote, getAllArchievedNotes, getAllNotes, addNote, deleteNote, updateNote, getArchievedNotesByCategory }

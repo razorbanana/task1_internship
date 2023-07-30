@@ -20,11 +20,15 @@
 
 <body>
     <div id="bodyDiv">
+        <!-- таблиця з активними нотатками -->
         <table id="notArchivedNotes" class="notesTable">
             
         </table>
+        <!-- вивід вибраного контенту -->
         <div id="chosenContent"  class="chosenDiv"></div>
+        <!-- кнопка для створення нотатки -->
         <button id="createButton" class="commonBtn">Create note</button>
+        <!-- таблиця з статистикою -->
         <table id="notesStatsTable" class="notesTable">
             <tbody>
                 <tr>
@@ -35,14 +39,16 @@
                 </tr>
             </tbody>
         </table>
+        <!-- таблиця з архівними нотатками -->
         <div id="archiveDiv">
             
         </div>
+        <!-- вивід вибраного в архіві контенту -->
         <div id="archivedContentDiv" class="chosenDiv">Click category to show archived notes</div>
     </div>
 
 
-
+    <!-- форма для створення нотатки -->
     <div class="formDiv" id="createFormDiv">
         <form class="noteForm" id="createNoteForm">
             <label for="name">Name:</label>
@@ -63,6 +69,7 @@
             <input type="submit" value="Cancel" id="cancelButton" class="commonBtn">
         </form>
     </div>
+    <!-- форма для редагування нотатки -->
     <div class="formDiv" id="editFormDiv">
         <form class="noteForm" id="editNoteForm">
             <label for="name">Name:</label>

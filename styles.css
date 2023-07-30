@@ -96,7 +96,7 @@ body{
     color: white;
 }
 
-/*content and chosen content*/
+/*клітинки з контентом та вивід вибраного контенту*/
 
 .contentDiv:hover{
     cursor: pointer;
@@ -107,9 +107,10 @@ body{
     font-size: 32px;
 }
 
-/**/
+/*іконки дій в табличках*/
 
 .buttonDiv:hover {
+    
     background-color: #616161;
     color: white;
     border-radius: 5px;

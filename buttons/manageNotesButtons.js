@@ -4,6 +4,7 @@ import editFormButtonFunctionality from "../buttons/editTableButtons.js"
 import { summarizeCategories } from "../helper/functionHelper.js"
 import renderArchive from "../render/archiveRender.js"
 
+//додати функціонал для кнопок архівації
 const addArchiveEventListeners = () => {
     const allNotArchievedNotes = getAllNotArchievedNotes()
     allNotArchievedNotes.forEach(note => {
@@ -16,6 +17,7 @@ const addArchiveEventListeners = () => {
     })
 }
 
+//додати функціонал для кнопок видалення
 const addDeleteEventListeners = () => {
     const allNotArchievedNotes = getAllNotArchievedNotes()
     allNotArchievedNotes.forEach(note => {
@@ -28,6 +30,7 @@ const addDeleteEventListeners = () => {
     })
 }
 
+//додати функціонал для кнопок редагування
 const addEditEventListeners = () => {
     const allNotArchievedNotes = getAllNotArchievedNotes()
     allNotArchievedNotes.forEach(note => {
@@ -39,11 +42,13 @@ const addEditEventListeners = () => {
             document.querySelector("#editedCategory").value = note.category
 
             document.querySelector('#editFormDiv').style.display = "flex"
+            //форма для редагування
             editFormButtonFunctionality(note.id)
         })
     })
 }
 
+//додати функціонал для клікання контенту
 const clickContentEventListener = () => {
     const allNotArchievedNotes = getAllNotArchievedNotes()
     const chosenDiv = document.querySelector(`#chosenContent`)
@@ -56,6 +61,7 @@ const clickContentEventListener = () => {
     })
 }
 
+//додати функціонал для клікання категорії
 const clickCategoryEventListener = () => {
     const summarizedCategories = summarizeCategories()
     summarizedCategories.forEach(obj => {
@@ -68,6 +74,7 @@ const clickCategoryEventListener = () => {
     })
 }
 
+//весь функціонал
 const addEventListeners = () => {
     addArchiveEventListeners()
     addDeleteEventListeners()

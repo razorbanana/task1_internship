@@ -1,3 +1,4 @@
+//масив з компонентами іконок
 const icons = {
     Task: `<div class="circled-icons"><span class="material-symbols-outlined ">
     shopping_cart
@@ -25,6 +26,7 @@ const icons = {
     </span>`
 }
 
+//отримати іконки
 const getIcons = () => {
     return icons
 }
