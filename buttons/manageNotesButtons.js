@@ -1,4 +1,4 @@
-import { getAllNotArchievedNotes,archiveNote, deleteNote, getArchievedNotesByCategory  } from "../service/notesService.js"
+import { getAllNotArchievedNotes,archiveNote, deleteNote  } from "../service/notesService.js"
 import renderTables from "../render/tableRender.js"
 import editFormButtonFunctionality from "../buttons/editTableButtons.js"
 import { summarizeCategories } from "../helper/functionHelper.js"

@@ -18,9 +18,12 @@ const renderArchiveNoteRow = (note) => {
 
 const clearArchiveTable = (notes) => {
     const archiveDiv = document.querySelector('#archiveDiv')
+    const chosenDiv = document.querySelector(`#archivedContentDiv`)
     if(notes.length === 0){
         archiveDiv.innerHTML = ''
+        chosenDiv.innerHTML = 'Click category to show archived notes'
     }else{
+        chosenDiv.innerHTML = 'Click content cell of archive note to read it!'
         archiveDiv.innerHTML = `
 <table id="archivedNotes" class="notesTable">
     <tbody>
@@ -80,6 +83,8 @@ const renderAllByNotes = (notes) => {
 }
 
 const renderArchive = (category) => {
+    const chosenDiv = document.querySelector(`#archivedContentDiv`)
+    chosenDiv.innerHTML = ""
     const notes = getArchievedNotesByCategory(category)
     renderAllByNotes(notes)
 }

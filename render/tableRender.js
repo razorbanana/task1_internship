@@ -20,25 +20,35 @@ const renderActiveNoteRow = (note) => {
 }
 
 
-const clearActiveTable = () => {
-    const notArchivedNotes = document.querySelector('#notArchivedNotes>tbody')
-    notArchivedNotes.innerHTML = `<tr>
-    <th></th>
-    <th>Name</th>
-    <th>Created</th>
-    <th>Category</th>
-    <th>Content</th>
-    <th>Dates</th>
-    <th><span class="material-symbols-outlined">
-            edit
-        </span></th>
-    <th><span class="material-symbols-outlined">
-        archive
-        </span></th>
-    <th><span class="material-symbols-outlined">
-        delete
-        </span></th>
-</tr>`
+const clearActiveTable = (allNotArchievedNotes) => {
+    const notArchivedNotes = document.querySelector('#notArchivedNotes')
+    const chosenDiv = document.querySelector(`#chosenContent`)
+    if (allNotArchievedNotes.length === 0) {
+        notArchivedNotes.innerHTML = ""
+        chosenDiv.innerHTML="There are no active notes"
+    } else {
+        chosenDiv.innerHTML="Click content cell to read it!"
+        notArchivedNotes.innerHTML = `<tbody>
+    <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Created</th>
+        <th>Category</th>
+        <th>Content</th>
+        <th>Dates</th>
+        <th><span class="material-symbols-outlined">
+                edit
+            </span></th>
+        <th><span class="material-symbols-outlined">
+                archive
+            </span></th>
+        <th><span class="material-symbols-outlined">
+                delete
+            </span></th>
+    </tr>
+</tbody>`
+    }
+
 }
 
 const clearStatsTable = () => {
@@ -52,12 +62,12 @@ const clearStatsTable = () => {
 }
 
 const renderActiveNotes = () => {
-    clearActiveTable()
     const allNotArchievedNotes = getAllNotArchievedNotes()
+    clearActiveTable(allNotArchievedNotes)
     allNotArchievedNotes.forEach(note => {
         renderActiveNoteRow(note)
     })
-    
+
 }
 
 const renderNotesStats = () => {
@@ -68,7 +78,7 @@ const renderNotesStats = () => {
     categoriesStats.forEach(obj => {
         notesStatsTable.innerHTML = notesStatsTable.innerHTML +
             `<td>${icons[obj.category]}</td>
-         <td><div class="contentDiv" id=${'category'+obj.category.slice(0,5)}>${obj.category}</div></td>
+         <td><div class="contentDiv" id=${'category' + obj.category.slice(0, 5)}>${obj.category}</div></td>
          <td>${obj.active || 0}</td>
          <td>${obj.archieved || 0}</td>`
     })
